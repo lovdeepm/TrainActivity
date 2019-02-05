@@ -38,21 +38,23 @@ $('#submit').on('click', function(e) {
 database.ref().on('child_added', function(snapshot){
     console.log(snapshot.val());
     var val = snapshot.val();
-    var name = val.name;
-    var destination = val.destination;
-    var firstTrain = val.firstTrain;
-    var frequency = val.frequency;
-    var arrival = "";
-    var minutes = "";
+    var trainName = val.name;
+    var Traindestination = val.destination;
+    var Trainfrequency = val.frequency;
+    var ThefirstTrain = val.firstTrain;
+    var arrival = "12:00";
+    var minutes = "1800";
+
+    
 
     var row = $('<tr>');
-    row.append('<td>' + name + '</td>');
-    row.append('<td>' + destination + '</td>');
-    row.append('<td>' + firstTrain + '</td>');
-    row.append('<td>' + frequency + '</td>');
-    row.append('<td>' + arrival + '</td>');
+    row.append('<td>' + trainName + '</td>');
+    row.append('<td>' + Traindestination + '</td>');
+    row.append('<td>' + Trainfrequency + '</td>');
+    row.append('<td>' + ThefirstTrain + '</td>');
     row.append('<td>' + minutes + '</td>');
 
     $('tbody').append(row);
 });
+
 })
