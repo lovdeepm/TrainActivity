@@ -42,8 +42,11 @@ database.ref().on('child_added', function(snapshot){
     var Traindestination = val.destination;
     var Trainfrequency = val.frequency;
     var ThefirstTrain = val.firstTrain;
-    var arrival = "12:00";
-    var minutes = "1800";
+    var difference = moment().diff(moment.unix(snapshot.val().time), "minutes");
+    var remainder = difference % Trainfrequency;
+    var arrival = moment().add(minutes, "m").format("HH:MM A")
+    var minutes = Trainfrequency - remainder;
+    console.log(arrival)
 
     
 
@@ -51,7 +54,7 @@ database.ref().on('child_added', function(snapshot){
     row.append('<td>' + trainName + '</td>');
     row.append('<td>' + Traindestination + '</td>');
     row.append('<td>' + Trainfrequency + '</td>');
-    row.append('<td>' + ThefirstTrain + '</td>');
+    row.append('<td>' + arrival + '</td>');
     row.append('<td>' + minutes + '</td>');
 
     $('tbody').append(row);
